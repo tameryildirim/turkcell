@@ -1,0 +1,12 @@
+﻿body {
+    color: #f00;
+}
+
+h1 {
+    border: solid #AAA 1px;
+}
+
+.above-buttons {
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 10px;
+}

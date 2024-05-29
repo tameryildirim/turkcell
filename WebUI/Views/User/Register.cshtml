@@ -1,0 +1,98 @@
+﻿<div class="row">
+    <div class="col-2">
+        <div id="div_name" class="input-group">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-user"></i></span>
+            </div>
+            <input type="text" id="input_name" name="input_name" class="form-control" maxlength="20" placeholder="Name" />
+        </div>
+    </div>
+    <div class="col-3">
+        <div id="div_lastname" class="input-group">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-user"></i></span>
+            </div>
+            <input type="text" id="input_lastname" name="input_lastname" class="form-control" maxlength="30" placeholder="Lastname" />
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="div_username" class="input-group">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-user"></i></span>
+            </div>
+            <input type="text" id="input_username" name="input_username" class="form-control" maxlength="16" placeholder="Username" />
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="div_phone" class="input-group">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-phone"></i></span>
+            </div>
+            <input type="number" id="input_phone" name="input_phone" class="form-control" maxlength="30" placeholder="Phone" />
+        </div>
+    </div>
+    <div class="col-3">
+        <div id="div_birthday" class="input-group">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-cake-candles"></i></span>
+            </div>
+            <input type="date" id="input_birthday" name="input_birthday" class="form-control" maxlength="30" placeholder="Birthday" />
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-5">
+        <div id="div_email" class="input-group">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-envelope"></i></span>
+            </div>
+            <input type="text" id="input_email" name="input_email" class="form-control" maxlength="75" placeholder="Email" />
+        </div>
+        <div id="div_password" class="input-group mt-2">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-key"></i></span>
+            </div>
+            <input type="password" id="input_password" name="input_password" class="form-control" maxlength="16" placeholder="Password" />
+        </div>
+        <div id="div_cpassword" class="input-group mt-2">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-key"></i></span>
+            </div>
+            <input type="password" id="input_cpassword" name="input_cpassword" class="form-control" maxlength="16" placeholder="Confirm password" />
+        </div>
+    </div>
+    <div class="col-7">
+        <div id="div_address" class="input-group">
+            <div class="input-group-text">
+                <span><i class="fa-solid fa-location-dot"></i></span>
+            </div>
+            <textarea type="text" id="input_address" name="input_address" class="form-control" rows="5" placeholder="Address">
+            </textarea>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row mt-4 float-end">
+    <div class="col-12">
+        <div id="div_captchaButtons" class="input-group">
+            <span id="span_warning">Lütfen yeni kullanıcı bilgilerini giriniz</span>
+            <span id="span_captcha"></span>
+            <span id="span_refreshCaptcha">
+                <i class="fa-solid fa-rotate"></i>
+            </span>
+            <input id="input_captcha" maxlength="2" placeholder="?" class="form-control" />
+            <div class="btn-group" style="margin-left: 10px;" role="group">
+                <button class="btn btn-info" id="btn_test">Test</button>
+                <button class="btn btn-danger" id="btn_cancel">Cancel</button>
+                <button class="btn btn-warning" id="btn_clear">Clear</button>
+                <button class="btn btn-success" id="btn_save">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/pages/user/register.js"></script>
+
+}

@@ -1,0 +1,20 @@
+﻿.logo-img {
+    width: 60px;
+}
+
+#img_logo {
+    padding: 3px;
+}
+
+.error {
+    border: 1px solid red;
+    border-radius: 3px;
+}
+
+.bg-blue{
+    background-color: blue;
+}
+
+.bg-black {
+    background-color: black;
+}
