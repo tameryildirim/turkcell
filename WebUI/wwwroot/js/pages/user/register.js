@@ -32,11 +32,16 @@ let Page = {
         $("body :input").val("");
         $("#input_name").focus();
         Utility.RefreshCaptcha();
+    },
+    ClearValidation: function () {
+        $("body :input").css("border-color", "#ced4da");
+        $("div").css("border-color", "#ced4da");
     }
 }
 
 let User = {
     Validate: function () {
+        Page.ClearValidation();
         validation = -1;
         try {
             if ($("#input_username").val() == "") validation = 1
@@ -57,12 +62,31 @@ let User = {
     },
     Register: function () {
         if (User.Validate()) {
-            Utility.WriteError();
+            Utility.SetError();
             return false;
         }
         let user = {
-
+            Name: $("#input_name").val(),
+            Lastname: $("#input_lastname").val(),
+            Username: $("#input_username").val(),
+            Phone: $("#input_phone").val(),
+            Email: $("#input_email").val(),
+            Password: $("#input_password").val(),
+            Address: $("#input_address").val()
         };
+
+        Utility.WriteConsoleLog(user);
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(user),
+            url: "#",
+            contentType: "application.json",
+            async: true
+        }).done(function (res) {
+            Utility.WriteConsoleLog(res);
+        });
+
+        Utility.WriteSuccess("New user infos was sent to save");
         Utility.WriteConsoleLog("New user saved!");
     }
 }
@@ -74,27 +98,47 @@ let Utility = {
     WriteConsoleError: function (error) {
         console.error(error);
     },
-    WriteError: function () {
-        let errorMessage = null;
+    WriteInfo: function (info) {
+        $("#span_warning").html(info).css("color", "#000");
+    },
+    WriteSuccess: function (info) {
+        $("#span_warning").html(info).css("color", "#098E09");
+    },
+    WriteError: function (info) {
+        $("#span_warning").html(info).css("color", "#F00");
+    },
+    SetError: function () {
         switch (validation) {
             case 1:
-                errorMessage = "Username is required!";
+                Utility.WriteError("Username is required!");
+                Utility.MakeRed([$("#div_username"), $("#input_username")]);
                 break;
             case 2:
-                errorMessage = "Phone is required!";
+                Utility.WriteError("Phone is required!");
+                Utility.MakeRed([$("#div_phone"), $("#input_phone")]);
                 break;
             case 3:
-                errorMessage = "Password is required!";
+                Utility.WriteError("Password is required!");
+                Utility.MakeRed([$("#div_password"), $("#input_password")]);
                 break;
             case 4:
-                errorMessage = "Password are not same!";
+                Utility.WriteError("Password confirmation is not same!");
+                Utility.MakeRed([$("#div_password"), $("#input_password"), $("#div_cpassword"), $("#input_cpassword")]);
                 break;
             case 5:
-                errorMessage = "Captcha is wrong!";
-                Utility.RefreshCaptcha();
+                Utility.WriteError("Captcha control is invalid!");
+                Utility.MakeRed([$("#input_captcha")]);
+                break;
+            default:
+                Utility.WriteSuccess("New user infos was sent to save");
                 break;
         }
-        $("#span_warning").html(errorMessage).css("color", "#F00");
+    },
+	MakeRed: function ($elem) {
+	    $($elem).each(function (index, $element) {
+            $element.css("border", "1px solid #f00");
+		    if ((index == 1) || ($elem.length==1)) $element.focus();
+	    });
     },
     Randomize: function (startValue = 0, endValue = 10) {
         return Math.floor(Math.random() * (endValue - startValue)) + startValue;
